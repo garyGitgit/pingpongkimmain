@@ -1,5 +1,9 @@
 package com.github.pocmo.pingpongkim;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -28,6 +32,7 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    MyReceiver myReceiver;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -66,8 +71,18 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
 //            }
 //        });
 
+        //리시버 등록
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction("play");
+        myReceiver = new MyReceiver();
+        registerReceiver(myReceiver, intentFilter);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myReceiver);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -163,6 +178,18 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
         public int getCount() {
             // Show 3 total pages.
             return 3;
+        }
+    }
+
+    //서비스에서 브로드캐스트 받아서 실행
+    class MyReceiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(action.equals("play")){
+                Intent playActivity = new Intent(MainActivity2.this, PlayActivity.class);
+                startActivity(playActivity);
+            }
         }
     }
 }

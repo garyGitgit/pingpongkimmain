@@ -47,9 +47,18 @@ public class SensorService extends Service implements SensorEventListener {
     private DeviceClient client;
     private ScheduledExecutorService mScheduler;
 
+
+    //MyReceiver receiver;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        //리시버 등록
+        //receiver = new MyReceiver();
+//        IntentFilter filter = new IntentFilter();
+//        filter.addAction("start");
+//        registerReceiver(receiver, filter);
 
         client = DeviceClient.getInstance(this);
 
@@ -66,7 +75,7 @@ public class SensorService extends Service implements SensorEventListener {
     @Override
     public void onDestroy() {
         super.onDestroy();
-
+        //unregisterReceiver(receiver);
         stopMeasurement();
     }
 
@@ -282,5 +291,16 @@ public class SensorService extends Service implements SensorEventListener {
 
         Log.d(TAG, "=== LIST AVAILABLE SENSORS ===");
     }
+
+
+    //액티비티로부터 메시지받기
+//    public class MyReceiver extends BroadcastReceiver{
+//        @Override
+//        public void onReceive(Context context, Intent intent) {
+//            //Log.e(TAG, "noh received message / " + intent.getAction());
+//
+//            client.sendStartMessage();
+//        }
+//    }
 
 }

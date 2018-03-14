@@ -50,5 +50,12 @@
         android:id="@+id/buttonTemp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(임시)종료하기"/>
+        android:text="(임시)그래프 띄우기"/>
+
+    <Button
+        android:id="@+id/buttonTemp2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(임시)메인 페이지로 이동"/>
+
 </LinearLayout>

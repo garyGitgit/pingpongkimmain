@@ -57,12 +57,18 @@ public class TutorialActivity extends FragmentActivity implements Tutorial.Tutor
 
     //슬라이드를 한 페이지 넘겨준다
     @Override
-    public void onMoveNextPage() {
+    public void onMoveNextPage(int id) {
         if(mPager.getCurrentItem() < NUM_PAGES-1)
             mPager.setCurrentItem(mPager.getCurrentItem()+1);
         else {
             Toast.makeText(TutorialActivity.this, "메인 페이지로 이동", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+            if(id == 3){
+                startActivity(new Intent(this, MainActivity.class));
+            }
+            else{
+                startActivity(new Intent(this, MainActivity2.class));
+            }
+
             finish();
         }
     }

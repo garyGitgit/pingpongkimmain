@@ -34,6 +34,7 @@ public class Tutorial3 extends Tutorial {
 
     //뷰
     Button buttonTemp;
+    Button buttonTemp2;
 
     public Tutorial3() {
         // Required empty public constructor
@@ -44,14 +45,23 @@ public class Tutorial3 extends Tutorial {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial3, container, false);
+        final ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_tutorial3, container, false);
         buttonTemp = (Button)rootView.findViewById(R.id.buttonTemp);
         buttonTemp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mListener.onMoveNextPage();
+                mListener.onMoveNextPage(3);
             }
         });
+
+        buttonTemp2 = (Button)rootView.findViewById(R.id.buttonTemp2);
+        buttonTemp2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mListener.onMoveNextPage(4);
+            }
+        });
+
         return rootView;
     }
 

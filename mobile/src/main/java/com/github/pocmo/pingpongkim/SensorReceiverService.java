@@ -19,6 +19,7 @@ public class SensorReceiverService extends WearableListenerService {
     public static final String ACTION_RECEIVE_SENSOR_DATA = "pingpongboy.sensordata";
     public static final String ACTION_DETECT_SWING = "pingpongboy.detectswing";
     private static final String TAG = "PingPongBoy";
+    private boolean isPlaying = false;
 
     double prev_gravity_z = 9;
     boolean isHorizontalSwing = true;
@@ -49,8 +50,21 @@ public class SensorReceiverService extends WearableListenerService {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isPlaying = false;
+    }
+
+    @Override
     public void onDataChanged(DataEventBuffer dataEvents) {
         Log.d(TAG, "onDataChanged()");
+        if(!isPlaying){
+            //새로운 액티비티 실행
+            Intent intent = new Intent();
+            intent.setAction("play");
+            isPlaying = true;
+            sendBroadcast(intent);
+        }
 
         for (DataEvent dataEvent : dataEvents) {
             if (dataEvent.getType() == DataEvent.TYPE_CHANGED) {

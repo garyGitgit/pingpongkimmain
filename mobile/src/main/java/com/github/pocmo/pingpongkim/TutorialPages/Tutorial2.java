@@ -93,7 +93,7 @@ public class Tutorial2 extends Tutorial {
                         remoteSensorManager.stopMeasurement();
                         //중지
                         BusProvider.getInstance().unregister(this);
-                        mListener.onMoveNextPage();
+                        mListener.onMoveNextPage(2);
                     }
                 }, 5000);
             }

@@ -119,4 +119,12 @@ public class DeviceClient {
             });
         }
     }
+
+    public void sendStartMessage(){
+        if(validateConnection()){
+            Wearable.MessageApi.sendMessage(googleApiClient, "garynoh", "garynoh", null);
+            Log.e(TAG, "noh send message");
+        }
+
+    }
 }

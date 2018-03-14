@@ -81,7 +81,7 @@ public class Tutorial1 extends Tutorial {
                 if(isSuccess){
                     //다음 페이지로 이동
                     //액티비티로 메시지 전송
-                    mListener.onMoveNextPage();
+                    mListener.onMoveNextPage(1);
                 }
             }
         });

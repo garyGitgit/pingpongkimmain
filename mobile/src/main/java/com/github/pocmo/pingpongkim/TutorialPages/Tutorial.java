@@ -6,6 +6,6 @@ package com.github.pocmo.pingpongkim.TutorialPages;
 
 public class Tutorial extends android.support.v4.app.Fragment{
     public interface TutorialNextPage{
-        void onMoveNextPage();
+        void onMoveNextPage(int num);
     }
 }
