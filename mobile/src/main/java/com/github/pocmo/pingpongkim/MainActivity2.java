@@ -192,4 +192,14 @@ public class MainActivity2 extends AppCompatActivity implements Tab1.OnFragmentI
             }
         }
     }
+    /**
+     * 브로드캐스트에 등록을 할 때 intentFilter 를 보내는데 여기에 3가지 action 을 추가함
+     * @return
+     */
+    private static IntentFilter makeIntentFilter() {
+        final IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(SensorReceiverService.ACTION_RECEIVE_SENSOR_DATA);
+        intentFilter.addAction(SensorReceiverService.ACTION_DETECT_SWING);
+        return intentFilter;
+    }
 }
